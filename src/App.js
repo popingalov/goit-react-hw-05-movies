@@ -21,6 +21,7 @@ function App() {
       name,
       number,
     };
+
     setContacts(e => [...e, contact]);
   };
 
