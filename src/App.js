@@ -1,56 +1,28 @@
-import { useState } from 'react';
+import { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './Components/Header/Header';
+import Spiner from './Components/Spiner/Spiner';
+
 import './App.css';
-import ContactForm from './Components/ContactForm/ContactForm';
-import ContactList from './Components/ContactList/ContactList';
-import Filter from './Components/Filter/Filter';
-import ContactsHook from './Components/hooks/ContactsHook';
-import { v4 as uuidv4 } from 'uuid';
-
+const HomePage = lazy(() => import('./page/HomePage'));
+const MoviesPage = lazy(() => import('./page/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('./page/MovieDetailsPage'));
 function App() {
-  const [contacts, setContacts] = ContactsHook('contacts');
-  const [filter, setFilter] = useState('');
-
-  const addContact = (name, number) => {
-    if (contacts.find(contact => name === contact.name)) {
-      alert(name + ' is already in contacts');
-      return;
-    }
-
-    const contact = {
-      id: uuidv4(),
-      name,
-      number,
-    };
-
-    setContacts(e => [...e, contact]);
-  };
-
-  const handleChangeFilter = event => {
-    setFilter(event.target.value);
-  };
-
-  const filteredContact = () => {
-    return contacts.filter(contacts =>
-      contacts.name.toLowerCase().includes(filter.toLowerCase()),
-    );
-  };
-
-  const deleteContact = contactId => {
-    setContacts(e => e.filter(contact => contact.id !== contactId));
-  };
-
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm onAddContact={addContact} />
-
-      <h2>Contacts</h2>
-      {contacts.length > 1 && (
-        <Filter handleChangeFilter={handleChangeFilter} filter={filter} />
-      )}
-
-      <ContactList contacts={filteredContact()} deleteContact={deleteContact} />
-    </div>
+    <>
+      <Header />
+      <Suspense fallback={<Spiner />}>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/movies" element={<MoviesPage />} />
+          <Route
+            exact
+            path="/movies/:movieId/*"
+            element={<MovieDetailsPage />}
+          />
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 

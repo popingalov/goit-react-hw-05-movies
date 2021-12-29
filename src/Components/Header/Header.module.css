@@ -1,0 +1,27 @@
+.Header {
+  padding: 30px 30px;
+  font-weight: 600;
+  font-size: 32px;
+  background-color: rgba(53, 48, 48, 0.822);
+}
+
+.Header__navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Header__item {
+  text-decoration: none;
+}
+.Active {
+  composes: Header__item;
+  color: rgb(206, 130, 17);
+}
+.Header__item:hover {
+  color: red;
+}
+
+.Header__item:not(:last-child) {
+  margin-right: 55px;
+}

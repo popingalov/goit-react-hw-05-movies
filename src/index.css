@@ -11,3 +11,32 @@ img {
   max-width: 100%;
   height: auto;
 }
+a:active,
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+a:hover {
+  color: rgba(155, 107, 20, 0.582);
+}
+hr {
+  margin: 0;
+  height: 10px;
+  background-color: rgba(145, 20, 20, 0.774);
+}
+ul {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+#root {
+  background-color: slategray;
+  height: 100vh;
+}
