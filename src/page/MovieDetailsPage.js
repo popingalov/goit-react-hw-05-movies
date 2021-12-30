@@ -27,11 +27,9 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   const goBack = () => {
-    if (!helpMe.current.state) {
-      navigate('/');
-      return;
-    }
-    navigate(helpMe.current.state);
+    !helpMe?.current?.state || helpMe.current === null
+      ? navigate('/')
+      : navigate(helpMe.current.state);
   };
 
   return (
