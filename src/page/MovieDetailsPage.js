@@ -18,6 +18,7 @@ export default function MovieDetailsPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { movieId } = useParams();
+  const read = useParams();
   const [movie, setMovie] = useState(null);
   const helpMe = useRef();
   useEffect(() => {

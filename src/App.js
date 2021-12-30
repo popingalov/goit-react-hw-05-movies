@@ -13,13 +13,9 @@ function App() {
       <Header />
       <Suspense fallback={<Spiner />}>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/movies" element={<MoviesPage />} />
-          <Route
-            exact
-            path="/movies/:movieId/*"
-            element={<MovieDetailsPage />}
-          />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
+          <Route path="/*" element={<HomePage />} />
         </Routes>
       </Suspense>
     </>
